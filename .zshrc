@@ -110,6 +110,9 @@ if [[ $HOST == "mingfeivlinux2" ]]; then
   alias cdlocal='cd /usr/scratch'
   alias vim='nvim'
   export EDITOR='nvim'
+elif [[ $HOST == "GMF-PC" || $HOST == "homedevubuntu" ]]; then
+  alias vim='nvim'
+  export EDITOR='nvim'
 else
   export EDITOR='vim'
 fi
@@ -154,7 +157,7 @@ zstyle ':completion:*' insert-tab false
 
 # Enable devtoolset
 if [[ $HOST == "mingfeivlinux2" ]]; then
-  source /opt/rh/devtoolset-8/enable
+  source /opt/rh/devtoolset-12/enable
 fi
 
 # fzf
