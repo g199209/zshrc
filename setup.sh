@@ -30,8 +30,7 @@ force-link ./gmf-theme.zsh-theme $ZSH_CUSTOM/themes/gmf-theme.zsh-theme
 git-pull-or-clone $ZSH_CUSTOM/plugins/zsh-autosuggestions git@github.com:zsh-users/zsh-autosuggestions.git
 git-pull-or-clone $ZSH_CUSTOM/plugins/zsh-syntax-highlighting git@github.com:zsh-users/zsh-syntax-highlighting.git
 
-
 # fzf
 git-pull-or-clone $HOME/.fzf git@github.com:junegunn/fzf.git
 cd $HOME/.fzf && ./install --no-zsh --no-bash --no-fish
-
+force-link ./.fzf.zsh "$HOME/.fzf.zsh"
