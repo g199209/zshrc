@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 if [[ $HOST == "mingfeivlinux2" ]]; then
-  export PATH=/usr/scratch/node-v16.20.0-linux-x64/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$PATH
+  export PATH=/usr/scratch/node-v16.20.0-linux-x64/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
   export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:$LD_LIBRARY_PATH
 fi
 
