@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-if [[ $HOST == "mingfeivlinux2" ]]; then
-  export PATH=/usr/scratch/node-v16.20.0-linux-x64/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$PATH
-  export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:$LD_LIBRARY_PATH
+if [[ $HOSTNAME == "mingfeivlinux2" ]]; then
+  export PATH=/usr/scratch/node-v16.20.0-linux-x64/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
+  export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:/opt/rh/llvm-toolset-15.0/root/usr/lib64:$LD_LIBRARY_PATH
 fi
 
 export PATH=$HOME/.local/bin:$PATH
@@ -109,11 +109,11 @@ export LANG=en_US.UTF-8
 alias ll='ls -alF'
 alias l='ls -lF'
 
-if [[ $HOST == "mingfeivlinux2" ]]; then
+if [[ $HOSTNAME == "mingfeivlinux2" ]]; then
   alias cdlocal='cd /usr/scratch'
   alias vim='nvim'
   export EDITOR='nvim'
-elif [[ $HOST == "GMF-PC" || $HOST == "homedevubuntu" ]]; then
+elif [[ $HOSTNAME == "GMF-PC" || $HOSTNAME == "homedevubuntu" ]]; then
   alias vim='nvim'
   export EDITOR='nvim'
   alias code='code --profile="Home"'
@@ -160,7 +160,7 @@ zstyle ':completion:*' insert-tab false
 # setopt no_share_history
 
 # Enable devtoolset
-if [[ $HOST == "mingfeivlinux2" ]]; then
+if [[ $HOSTNAME == "mingfeivlinux2" ]]; then
   source /opt/rh/devtoolset-12/enable
 fi
 
