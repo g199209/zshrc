@@ -16,6 +16,7 @@ function force-link {
   ln $1 $2
 }
 
+config_dir=`pwd`
 force-link ./.zshrc $HOME/.zshrc
 
 # oh-my-zsh
@@ -25,7 +26,7 @@ ZSH_CUSTOM="$ZSH/custom"
 
 git-pull-or-clone $ZSH git@github.com:ohmyzsh/ohmyzsh.git
 
-force-link ./gmf-theme.zsh-theme $ZSH_CUSTOM/themes/gmf-theme.zsh-theme
+force-link $config_dir/gmf-theme.zsh-theme $ZSH_CUSTOM/themes/gmf-theme.zsh-theme
 
 git-pull-or-clone $ZSH_CUSTOM/plugins/zsh-autosuggestions git@github.com:zsh-users/zsh-autosuggestions.git
 git-pull-or-clone $ZSH_CUSTOM/plugins/zsh-syntax-highlighting git@github.com:zsh-users/zsh-syntax-highlighting.git
@@ -33,4 +34,4 @@ git-pull-or-clone $ZSH_CUSTOM/plugins/zsh-syntax-highlighting git@github.com:zsh
 # fzf
 git-pull-or-clone $HOME/.fzf git@github.com:junegunn/fzf.git
 cd $HOME/.fzf && ./install --no-zsh --no-bash --no-fish
-force-link ./.fzf.zsh "$HOME/.fzf.zsh"
+force-link $config_dir/.fzf.zsh "$HOME/.fzf.zsh"
