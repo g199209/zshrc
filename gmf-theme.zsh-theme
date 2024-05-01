@@ -47,6 +47,7 @@ local exit_color_time="%(?,%{$fg[green]%}%*%{$reset_color%},%{$fg[red]%}%*%{$res
 # $
 PROMPT="
 $exit_color_time \
+%F{8}%n@%m%{$reset_color%} \
 %{$fg[blue]%}[%~]%{$reset_color%}\
 ${git_info}\
 ${git_sha}\
