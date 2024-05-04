@@ -114,7 +114,7 @@ if [[ $HOST == "mingfeivlinux2" ]]; then
   alias cdlocal='cd /usr/scratch'
   alias vim='nvim'
   export EDITOR='nvim'
-elif [[ $HOST == "HomeDev" || $HOST == "homedevubuntu" ]]; then
+elif [[ $HOST == "GMF-PC" || $HOST == "homedevubuntu" ]]; then
   alias vim='nvim'
   export EDITOR='nvim'
   alias code='code --profile="Home"'
