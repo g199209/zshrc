@@ -1,7 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 if [[ $HOST == "mingfeivlinux2" || $HOST == "mingfeivlinux-el8" ]]; then
-  export PATH=/usr/scratch/node-v16.20.0-linux-x64/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
+  export PATH=$HOME/.nvm/versions/node/v22.11.0/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
   export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:/opt/rh/llvm-toolset-15.0/root/usr/lib64:$LD_LIBRARY_PATH
+  export HUGETLB_VERBOSE=0
 fi
 
 export PATH=$HOME/.local/bin:$PATH
@@ -76,7 +77,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,13 +91,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -152,6 +149,10 @@ bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 
+# zsh vim mode
+bindkey -r "^E"
+bindkey "^E" edit-command-line
+
 # Disable insert tab
 zstyle ':completion:*' insert-tab false
 
@@ -172,4 +173,10 @@ fi
 
 # Disable "You have new mail."
 unset MAILCHECK
+
+# nvim
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
