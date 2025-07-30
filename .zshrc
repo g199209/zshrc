@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
-if [[ $HOST == "mingfeivlinux2" || $HOST == "mingfeivlinux-el8" ]]; then
+if [[ $HOST == "mingfeivlinux-el8-uwl" || $HOST == "mingfeivlinux-el8" ]]; then
   export PATH=$HOME/.nvm/versions/node/v22.11.0/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
   export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:/opt/rh/llvm-toolset-15.0/root/usr/lib64:$LD_LIBRARY_PATH
   export HUGETLB_VERBOSE=0
+  export DEFAULT_SCHED_HOST=sched8
 fi
 
 export PATH=$HOME/.local/bin:$PATH
@@ -107,10 +108,11 @@ export LANG="en_US.UTF-8"
 alias ll='ls -alF'
 alias l='ls -lF'
 
-if [[ $HOST == "mingfeivlinux2" || $HOST == "mingfeivlinux-el8" ]]; then
+if [[ $HOST == "mingfeivlinux-el8-uwl" || $HOST == "mingfeivlinux-el8" ]]; then
   alias cdlocal='cd /usr/scratch'
   alias vim='nvim'
   export EDITOR='nvim'
+  alias proxy='http_proxy=http://cow:2333 https_proxy=http://cow:2333 '
 elif [[ $HOST == "GMF-PC" || $HOST == "homedevubuntu" ]]; then
   alias vim='nvim'
   export EDITOR='nvim'
@@ -162,9 +164,7 @@ zstyle ':completion:*' insert-tab false
 # setopt no_share_history
 
 # Enable devtoolset
-if [[ $HOST == "mingfeivlinux2" ]]; then
-  source /opt/rh/devtoolset-12/enable
-elif [[ $HOST == "mingfeivlinux-el8" ]]; then
+if [[ $HOST == "mingfeivlinux-el8" || $HOST == "mingfeivlinux-el8-uwl" ]]; then
   source /opt/rh/gcc-toolset-12/enable
 fi
 
