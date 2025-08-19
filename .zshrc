@@ -85,6 +85,9 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 
+# Avoid uv venv change our PS1
+VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
