@@ -182,4 +182,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# fnm
+FNM_PATH="/home/mingfei/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
 
+
+# Rust Global Configuration
+if [ -d "/usr/local/rustup" ]; then
+    export RUSTUP_HOME=/usr/local/rustup
+    export CARGO_HOME=/usr/local/cargo
+    export PATH=$CARGO_HOME/bin:$PATH
+fi
