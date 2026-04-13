@@ -2,11 +2,13 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # If you come from bash you might have to change your $PATH.
 if [[ $HOST == "mingfeivlinux-el8-uwl" || $HOST == "mingfeivlinux-el8" ]]; then
-  export PATH=$HOME/.nvm/versions/node/v22.11.0/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
+  export PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
   export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:/opt/rh/llvm-toolset-15.0/root/usr/lib64:$LD_LIBRARY_PATH
   export HUGETLB_VERBOSE=0
   export DEFAULT_SCHED_HOST=sched8
   export PNPM_STORE_PATH=/usr/scratch/pnpm-store/store
+elif [[ $HOST == "mingfeivlinux-dmz" ]]; then
+  export PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
 fi
 
 # Path to your oh-my-zsh installation.
