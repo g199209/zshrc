@@ -1,12 +1,13 @@
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+
 # If you come from bash you might have to change your $PATH.
 if [[ $HOST == "mingfeivlinux-el8-uwl" || $HOST == "mingfeivlinux-el8" ]]; then
   export PATH=$HOME/.nvm/versions/node/v22.11.0/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:$HOME/.local/bin:$PATH
   export LD_LIBRARY_PATH=/abin/lib3ps:/usr/scratch/lib:/opt/rh/llvm-toolset-15.0/root/usr/lib64:$LD_LIBRARY_PATH
   export HUGETLB_VERBOSE=0
   export DEFAULT_SCHED_HOST=sched8
+  export PNPM_STORE_PATH=/usr/scratch/pnpm-store/store
 fi
-
-export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -111,11 +112,14 @@ export LANG="en_US.UTF-8"
 alias ll='ls -alF'
 alias l='ls -lF'
 
-if [[ $HOST == "mingfeivlinux-el8-uwl" || $HOST == "mingfeivlinux-el8" ]]; then
+if [[ $HOST == "mingfeivlinux-el8" || $HOST == "mingfeivlinux-dmz" ]]; then
   alias cdlocal='cd /usr/scratch'
   alias vim='nvim'
   export EDITOR='nvim'
-  alias proxy='http_proxy=http://cow:2333 https_proxy=http://cow:2333 '
+  alias proxy='http_proxy=http://cow:2333 https_proxy=http://cow:2333 no_proxy=localhost,127.0.0.1 '
+elif [[ $HOST == "mingfeivlinux-el8-uwl" ]]; then
+  export EDITOR='vim'
+  alias proxy='http_proxy=http://cow:2333 https_proxy=http://cow:2333 no_proxy=localhost,127.0.0.1 '
 elif [[ $HOST == "GMF-PC" || $HOST == "homedevubuntu" ]]; then
   alias vim='nvim'
   export EDITOR='nvim'
