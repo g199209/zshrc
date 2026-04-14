@@ -202,3 +202,10 @@ if [ -d "/usr/local/rustup" ]; then
     export CARGO_HOME=/usr/local/cargo
     export PATH=$CARGO_HOME/bin:$PATH
 fi
+
+# bun completions
+[ -s "/home/mingfei/.bun/_bun" ] && source "/home/mingfei/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
