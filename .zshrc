@@ -93,6 +93,26 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # User configuration
 
+# --- zellij: ring the bell when a long command finishes, so the tab shows [!] ---
+# Only active inside a zellij session. Tune ZLJ_BELL_THRESHOLD (seconds) to taste;
+# set it to 0 to ring after every command.
+if [[ -n $ZELLIJ ]]; then
+  autoload -Uz add-zsh-hook
+  zmodload zsh/datetime
+  : ${ZLJ_BELL_THRESHOLD:=10}
+
+  _zlj_cmd_start=0
+  _zlj_preexec() { _zlj_cmd_start=$EPOCHSECONDS }
+  _zlj_precmd() {
+    (( _zlj_cmd_start > 0 )) || return
+    local elapsed=$(( EPOCHSECONDS - _zlj_cmd_start ))
+    _zlj_cmd_start=0
+    (( elapsed >= ZLJ_BELL_THRESHOLD )) && printf '\a'
+  }
+  add-zsh-hook preexec _zlj_preexec
+  add-zsh-hook precmd  _zlj_precmd
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -113,6 +133,7 @@ export LANG="en_US.UTF-8"
 
 alias ll='ls -alF'
 alias l='ls -lF'
+alias claude='claude --allow-dangerously-skip-permissions'
 
 if [[ $HOST == "mingfeivlinux-el8" || $HOST == "mingfeivlinux-dmz" ]]; then
   alias cdlocal='cd /usr/scratch'
@@ -195,7 +216,6 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
-
 # Rust Global Configuration
 if [ -d "/usr/local/rustup" ]; then
     export RUSTUP_HOME=/usr/local/rustup
@@ -203,9 +223,19 @@ if [ -d "/usr/local/rustup" ]; then
     export PATH=$CARGO_HOME/bin:$PATH
 fi
 
-# bun completions
-[ -s "/home/mingfei/.bun/_bun" ] && source "/home/mingfei/.bun/_bun"
-
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+if [ -d "$HOME/.bun" ]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# opencode
+if [ -d "$HOME/.opencode" ]; then
+    export PATH=/home/mingfei/.opencode/bin:$PATH
+fi
+
+# Load keys
+if [ -f "$HOME/.warden" ]; then
+    export BWS_ACCESS_TOKEN=$(cat "$HOME/.warden")
+    export EXA_API_KEY=$(cat /usr/credentials/Exa/key)
+fi
